@@ -1,0 +1,5 @@
+1.虚拟机/opt下创建两个文件夹：Picture、Video；
+2.服务器存放图片路径（绝对路径）：/opt/Picture；
+3.服务器存放视频路径（绝对路径）：/opt/Video；
+4.Third.db数据库文件存放路径：/opt下即可;
+5.图片传输测试图片：32.png、test.png放在/opt下。

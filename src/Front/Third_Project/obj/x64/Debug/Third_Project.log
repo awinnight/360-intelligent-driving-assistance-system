@@ -1,0 +1,41 @@
+﻿  正在清理远程项目目录
+  正在验证源
+  正在将源远程复制到“192.168.2.126”
+  正在验证体系结构
+  正在验证体系结构
+  正在启动远程生成
+  正在编译源:
+  CAddress.cpp
+  CSocketBase.cpp
+D:\Program Files (x86)\VSProject\Third_Project\CSocketBase.cpp(44,45): warning : conversion to ‘uint16_t {aka short unsigned int}’ from ‘int’ may alter its value [-Wconversion]
+D:\Program Files (x86)\VSProject\Third_Project\CSocketBase.cpp(44,45): warning :      server_addr.sin_port = htons(server_port);
+D:\Program Files (x86)\VSProject\Third_Project\CSocketBase.cpp(44,45): warning :                                              ^
+  CTask.cpp
+D:\Program Files (x86)\VSProject\Third_Project\CTask.cpp(24,9): warning : deleting object of polymorphic class type ‘CTaskChild’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+D:\Program Files (x86)\VSProject\Third_Project\CTask.cpp(24,9): warning :   delete this;
+D:\Program Files (x86)\VSProject\Third_Project\CTask.cpp(24,9): warning :          ^
+  EpollServer.cpp
+  main.cpp
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(40,11): warning : unused variable ‘pret’ [-Wunused-variable]
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(40,11): warning :      void* pret;
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(40,11): warning :            ^
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(41,15): warning : unused variable ‘addr_len’ [-Wunused-variable]
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(41,15): warning :      socklen_t addr_len;
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(41,15): warning :                ^
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(42,9): warning : unused variable ‘client_num’ [-Wunused-variable]
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(42,9): warning :      int client_num = -1;
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(42,9): warning :          ^
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(133,11): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(133,11): warning :      nread = read(fd, buf, sizeof(COM_PAGE));   //ÿ�ζ�ȡ�̶���������
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(133,11): warning :            ^
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(150,13): warning : unused variable ‘ret’ [-Wunused-variable]
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(150,13): warning :          int ret;
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(150,13): warning :              ^
+D:\Program Files (x86)\VSProject\Third_Project\main.cpp(202,61): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+  ShareM.cpp
+  ThreadPool.cpp
+D:\Program Files (x86)\VSProject\Third_Project\ThreadPool.cpp(59,11): warning : deleting object of abstract class type ‘CTask’ which has non-virtual destructor will cause undefined behaviour [-Wdelete-non-virtual-dtor]
+D:\Program Files (x86)\VSProject\Third_Project\ThreadPool.cpp(59,11): warning :     delete t;
+D:\Program Files (x86)\VSProject\Third_Project\ThreadPool.cpp(59,11): warning :            ^
+  正在链接对象
+  Third_Project.vcxproj -> D:\Program Files (x86)\VSProject\Third_Project\bin\x64\Debug\Third_Project.out

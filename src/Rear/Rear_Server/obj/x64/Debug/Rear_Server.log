@@ -1,0 +1,28 @@
+﻿  正在清理远程项目目录
+  正在验证源
+  正在将源远程复制到“192.168.43.42”
+  正在验证体系结构
+  正在验证体系结构
+  正在启动远程生成
+  正在编译源:
+  CTask.cpp
+D:\Program Files (x86)\VSProject\Rear_Server\CTask.cpp(26,9): warning : deleting object of polymorphic class type ‘CTaskChild’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+D:\Program Files (x86)\VSProject\Rear_Server\CTask.cpp(26,9): warning :   delete this;
+D:\Program Files (x86)\VSProject\Rear_Server\CTask.cpp(26,9): warning :          ^
+D:\Program Files (x86)\VSProject\Rear_Server\CTask.cpp(312,28): warning : conversion to ‘int’ from ‘size_t {aka long unsigned int}’ may alter its value [-Wconversion]
+D:\Program Files (x86)\VSProject\Rear_Server\CTask.cpp(312,28): warning :                      w_size = fwrite(it1->second.PicBuf, 1, 912, fp);
+D:\Program Files (x86)\VSProject\Rear_Server\CTask.cpp(312,28): warning :                             ^
+  main.cpp
+  PictureModel.cpp
+  PictureTable.cpp
+  ShareM.cpp
+  SignalDB.cpp
+  ThreadPool.cpp
+D:\Program Files (x86)\VSProject\Rear_Server\ThreadPool.cpp(59,11): warning : deleting object of abstract class type ‘CTask’ which has non-virtual destructor will cause undefined behaviour [-Wdelete-non-virtual-dtor]
+D:\Program Files (x86)\VSProject\Rear_Server\ThreadPool.cpp(59,11): warning :     delete t;
+D:\Program Files (x86)\VSProject\Rear_Server\ThreadPool.cpp(59,11): warning :            ^
+  UserModel.cpp
+  VideoModel.cpp
+  VideoTable.cpp
+  正在链接对象
+  Rear_Server.vcxproj -> D:\Program Files (x86)\VSProject\Rear_Server\bin\x64\Debug\Rear_Server.out
