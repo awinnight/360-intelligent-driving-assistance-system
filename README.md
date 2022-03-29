@@ -18,7 +18,7 @@
 
 业务功能主要包含以下几块内容：
 
-![image](image/1.png)
+![image](image/1.jpg)
 
  
 
