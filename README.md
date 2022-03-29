@@ -18,7 +18,7 @@
 
 业务功能主要包含以下几块内容：
 
-![img](file:///C:\Users\47866\AppData\Local\Temp\ksohtml\wps871A.tmp.jpg) 
+![image](image/1.png)
 
  
 
@@ -139,7 +139,7 @@
 #### socket
 
 linux中的网络编程通过socket接口实现。Socket既是一种特殊的IO，它也是一种文件描述符。一个完整的Socket 都有一个相关描述{协议，本地地址，本地端口，远程地址，远程端口}；每一个Socket 有一个本地的唯一Socket 号，由操作系统分配。
-![image-20220328025905792](C:\Users\47866\AppData\Roaming\Typora\typora-user-images\image-20220328025905792.png)
+![image](image/2.png)
 
 #### 信号量
 
@@ -160,7 +160,7 @@ V(sv): 如果有其他进程因等待sv变量而被挂起，就让它恢复执�
 
 ##### PV操作的工作情况
 
-![img](file:///C:\Users\47866\AppData\Roaming\Tencent\Users\478662559\QQ\WinTemp\RichOle\VIBH$VBJH3]7BBQ~4BHBOFP.png)
+![image](image/3.png)
 
 
 
@@ -173,7 +173,7 @@ V(sv): 如果有其他进程因等待sv变量而被挂起，就让它恢复执�
 
 有一间汽车租赁公司共有10辆汽车,同时可以接受10个客户每个客户一辆车的订单。如第11个客户前来租赁,那么就必须等待前面10个客户中任意一个归还汽车后才能租赁，在这之前必须一直等待
 
-![img](file:///C:\Users\47866\AppData\Roaming\Tencent\Users\478662559\QQ\WinTemp\RichOle\DF_[[OG6SI3V]]GFI@WQ0VG.png)
+![image](image/4.png)
 
 汽车租赁公司是个服务器程序,而客户是个客户端程序
 服务器程序共掌握有10个资源，同时可以被10个客户端程序防问
