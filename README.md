@@ -1,3 +1,179 @@
+# 1.Relevant information
+
+This project builds on the knowledge system related to <u>*5G IoT Machine Vision Development*</u>.
+
+This document describes in detail the functional requirements and functional constraints of the project development from the perspective of functional requirements, guided by the goal of comprehensive application of the knowledge system, and provides a detailed functional requirements specification document for project practitioners and evaluation teams.
+
+Developers:Hong Huiwen
+
+Users:For those who want to learn more about this system
+
+# 2.Introduction
+
+360 degree intelligent driving assistance system is the realization of a 360 degree intelligent driving assistance system based on RTSP streaming media, opencv intelligent driving assistance system, this kind of intelligent driving assistance system can be installed in the body of the front and rear of the left and right 2 ~ 4 cameras, while collecting images around the vehicle, after the existing image processing technology for image distortion reduction After the existing image processing technology to image distortion reduction - perspective transformation - image stitching - image enhancement and other processing, the final formation of a seamless and complete panoramic bird's-eye view of the perimeter of the car. After using the system on the vehicle, the driver can accurately read out the position and distance of the obstacles by matching the ruler line. The project consists of three major parts: device client, terminal server, and large concurrent stress test program. The project integrates the knowledge system of <u>*5G IoT Vision Development*</u> and *<u>Linux Basic Development</u>*, adopts the idea of large concurrent communication framework and custom protocols, and encapsulates the communication framework containing communication components, dynamic arrays, and thread pools based on TCP Socket and other technologies. The project is based on the idea of large concurrent communication framework and custom protocols, which includes communication components, dynamic arrays and thread pools. The project adopts a team development model, which not only applies the technology in the project field, but also accumulates the experience of teamwork.
+
+# 3.Functions
+
+The business functions contain the following main components.
+**1.png**
+**2.png**
+
+# 4.Operating Environment
+
+## 4.1 Hardware
+
+Processors: CORE i5-8th
+RAM: 8G
+Equipment: Keyboard,Mouse
+
+## 4.2 Software
+
+Operating System: Windows 10(64-bit)
+
+Programming Language: C++
+Development Software: QT 5.9.8、Visual Studio 2019
+
+# 5.Operating Instructions
+
+## Server Module
+
+1.Files required for server operations and their storage paths：
+
+(1)Create two folders under Virtual Machine/opt: Picture、Video;
+
+(2)Server path to store images(Absolute path): /opt/Picture;
+
+(3)Server path for video storage(Absolute path):/opt/Video;
+
+(4)Database file path:/opt;
+
+(5)Image transfer test images:32.png, test.png in /opt;
+
+2.Server start:
+
+(1)Run the front server first: Third_Project.out;
+
+(2)Running a post server:Rear_Server.out.
+
+3.Server start:
+(1)Port:8080
+
+(2)Account:
+
+| UID  | UAccount | UPWD   |
+| ---- | -------- | ------ |
+| 1    | admin    | admin  |
+| 2    | root     | 123456 |
+| 3    | cqs      | 123456 |
+
+ (3)The front and back servers are equipped with a thread pool and shared memory, the thread pool can open a maximum of 100 threads, the shared memory piece open a protocol body packet size, a total of 100 hundred blocks and has an index area, after reading and writing automatically offset to the next piece of area, when the maximum value reached automatically offset to the 0th shared memory area.
+
+## Client Module
+
+The client is just a demo, used to test the server functionality
+
+**In the Used tip file.mp4 for details of the process.**
+
+# 5.Key Technology
+
+## 5.1Threads and processes
+
+Because there are quite a few applications involving processes and threads in this project, I'm here to describe a little self-understanding of the concept
+"**Processes are the smallest unit of resource allocation, threads are the smallest unit of CPU scheduling "** My understanding of this statement is:
+
+To make a simple analogy: process like train, thread like carriage
+
+- Threads travel under a process (a mere carriage cannot run)
+
+- A process can contain multiple threads (a train can have multiple cars)
+
+- It is difficult to share data between different processes (it is difficult for passengers on one train to change to another train, e.g. station change)
+
+- Data is easily shared between different threads under the same process (it is easy to change from carriage A to carriage B)
+
+- Processes consume more computer resources than threads (using multiple trains is more resource intensive than multiple cars)
+
+- Processes do not affect each other, a thread that hangs will cause the entire process to hang (one train will not affect another train, but if one car in the middle of a train catches fire, it will affect all cars)
+
+- Processes can be expanded to multiple machines, and processes are suitable for up to multiple cores (different trains can be driven on multiple tracks, and cars of the same train cannot be on different tracks of travel)
+
+- Memory addresses used by processes can be locked, i.e. when a thread uses some shared memory, other threads must wait for it to finish before they can use that piece of memory. (e.g., the bathroom on a train) - "Mutually exclusive locks"
+
+- The memory address used by a process can be limited in usage (e.g. a restaurant on a train, where only a maximum number of people are allowed to enter, and if it is full you need to wait at the door and wait for someone to come out before you can enter) - "Semaphore"
+
+## 5.2 IPC
+
+Since many techniques of inter-process communication are involved in this project, I am writing here an overview of some of the techniques.
+
+Inter-process communication has some purposes as follows.
+Data transfer: a process needs to send its data to another process, sending between one byte and several megabytes of data.
+Shared data: Multiple processes want to manipulate shared data, and changes made to shared data by one process should be immediately visible to other processes.
+Notification events: A process needs to send a message to another process or group of processes to notify them that some event has occurred (e.g. to notify the parent process when the process terminates).
+Resource sharing: Multiple processes share the same resources with each other. In order to do this, the kernel needs to provide locks and synchronization mechanisms.
+Process control: Some processes want to have full control over the execution of another process (e.g. the Debug process), when the controlling process wants to be able to intercept all the traps and exceptions of the other process and be aware of its state changes in time.
+
+Inter-process communication methods used in linux today:
+(1)Pipe and FIFO
+
+(2)Signal
+
+(3)Message Queue
+
+(4)Shared Memory
+
+(5)Semaphore
+
+(6)Socket
+
+**Here is a focus on socket and semaphore**
+
+### socket
+
+Network programming in linux is implemented through the socket interface, which is both a special kind of IO and a file descriptor. A complete socket has an associated description {protocol, local address, local port, remote address, remote port}; each socket has a local unique socket number, assigned by the operating system.
+**Flow socket based programming process,As shown:**
+
+**3.png**
+
+### Semaphore
+
+Dijkstra's concept of "semaphores" is a major advance in the field of co-design
+A semaphore is a variable that can only take positive integer values and can only perform two operations on these positive integers: wait and signal.
+Two notations are used to represent these two operations of the semaphore:
+
+P（semaphore variable）means waiting :1
+V（semaphore variable）means signal : -1
+
+#### Classification of Semaphore
+
+The simplest semaphore is a variable that can only take "0" and "1" values, which is often referred to as a "binary semaphore".
+A semaphore that can take multiple positive integer values is called a "generic semaphore"
+Suppose we have a semaphore variable sv, then the pv operation is defined as follows:
+P(sv): if the value of sv is greater than zero, subtract 1 from it; if the value of sv is equal to zero, suspend the execution of the process
+V(sv): if another process is hung because it is waiting for the sv variable, let it resume execution; if no process is hung because it is waiting for the sv variable, add 1 to it
+
+#### The working of PV operation：
+
+**4.png**
+
+Two processes share the sv semaphore variable. If one of them executes the P(sv) operation, it gets the semaphore and is able to access the critical code section.
+The second process will not be able to enter the critical code, because when it tries to perform the P(sv) operation, it will be hung up waiting for a process to leave the critical code and perform the V(sv) operation to release the semaphore.
+Each semaphore function can operate on groups of generic semaphores, and naturally can do the same for the simplest binary semaphores
+The header files <sys/types.h> and <sys/ipc.h> are also often used.
+
+
+
+Signaling semantic extensions:
+
+A car rental company has 10 cars and can accept orders from 10 customers for one car each. If the 11th customer comes to rent, then it must wait for any of the previous 10 customers to return the car before it can be rented, and must wait until then.
+
+**5.png**
+
+The car rental company is a server program, and the client is a client program.
+The server program has a total of 10 resources, which can be prevented by 10 client programs at the same time.
+Using semaphore knowledge, we initialize the semaphore with 10 instead of 1 (without using binary semaphore).
+Each client notifies the server with a signal after obtaining a resource, and the server receives the signal and displays the number of available resources on the screen.
+
+Chinese version:
 # 1.编写目的
 
 本项目建立在《5G物联网机器视觉开发》相关知识体系的基础上
